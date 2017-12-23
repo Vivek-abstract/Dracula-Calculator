@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun btnOpEvent(view: View) {
+        //Now user enters next number so reset isDecimal
+        isDecimal = false
         val selectedButton = view as Button
         if(isOperationUndergoing==false) {
             isOperationUndergoing = true
@@ -124,10 +126,12 @@ class MainActivity : AppCompatActivity() {
         firstOperand = ""
         secondOperand = "0"
         op = ""
+        isDecimal = false
         isOperationUndergoing = false
     }
 
     fun btnEqualEvent(view: View) {
+        isDecimal = false
         secondOperand = lowerNumber.text.toString()
         isOperationUndergoing = false
         if(secondOperand!!.length > 2) {
