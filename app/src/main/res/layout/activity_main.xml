@@ -4,36 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context="com.example.whiter0se.startuptemplate.MainActivity">
 
-    <EditText
+    <TextView
         android:id="@+id/upperNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-5pt"
         android:layout_weight="1"
-        android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:editable="false"
-        android:inputType="none"
+        android:paddingRight="4pt"
+        android:paddingTop="5pt"
         android:textAlignment="textEnd"
         android:textColor="@color/numberTop"
         android:textSize="45sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/lowerNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5pt"
         android:layout_weight="1"
-        android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:inputType="none"
-        android:selectAllOnFocus="false"
+        android:paddingRight="5pt"
+        android:text="0"
         android:textAlignment="textEnd"
         android:textColor="@color/numberBottom"
         android:textSize="32sp" />

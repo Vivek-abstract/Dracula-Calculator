@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     var op = ""
-    var firstOperand = ""
-    var secondOperand = ""
+    var firstOperand:String?=""
+    var secondOperand:String?=""
     var isOperationUndergoing = false
     var isDecimal = false
 
@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
 
         val selectedButton = view as Button
         var btnClickValue:String=lowerNumber.text.toString()
+        if(btnClickValue.equals("0")) {
+            btnClickValue = ""
+        }
         when(selectedButton.id) {
             btn0.id -> btnClickValue+="0"
             btn1.id -> btnClickValue+="1"
@@ -35,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             btn8.id -> btnClickValue+="8"
             btn9.id -> btnClickValue+="9"
             btnDecimal.id -> {
-                if(isDecimal == false) {
+                if(!isDecimal) {
                     btnClickValue += "."
                     isDecimal = true
                 } else {
@@ -65,6 +68,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             firstOperand = lowerNumber.text.toString()
+            if(firstOperand.isNullOrBlank()) {
+                //When user presses equal then the lowernumber text is in upperNumber
+                firstOperand = upperNumber.text.toString()
+            }
             upperNumber.setText(firstOperand)
             lowerNumber.setText("$op ")
         } else {
@@ -113,37 +120,43 @@ class MainActivity : AppCompatActivity() {
 
     fun btnDelEvent(view: View) {
         upperNumber.setText("")
-        lowerNumber.setText("")
+        lowerNumber.setText("0")
         firstOperand = ""
-        secondOperand = ""
+        secondOperand = "0"
         op = ""
         isOperationUndergoing = false
     }
 
     fun btnEqualEvent(view: View) {
         secondOperand = lowerNumber.text.toString()
-        if(secondOperand.length > 2) {
-            secondOperand = secondOperand.substring(2)
+        isOperationUndergoing = false
+        if(secondOperand!!.length > 2) {
+            secondOperand = secondOperand!!.substring(2)
             println(secondOperand)
             var answer: Double? = null
             when (op) {
                 "+" -> {
-                    answer = firstOperand.toDouble() + secondOperand.toDouble()
+                    answer = firstOperand!!.toDouble() + secondOperand!!.toDouble()
                 }
                 "-" -> {
-                    answer = firstOperand.toDouble() - secondOperand.toDouble()
+                    answer = firstOperand!!.toDouble() - secondOperand!!.toDouble()
                 }
                 "*" -> {
-                    answer = firstOperand.toDouble() * secondOperand.toDouble()
+                    answer = firstOperand!!.toDouble() * secondOperand!!.toDouble()
                 }
                 "/" -> {
-                    answer = firstOperand.toDouble() / secondOperand.toDouble()
+                    answer = firstOperand!!.toDouble() / secondOperand!!.toDouble()
                 }
             }
             //Now answer is the first operand
             firstOperand = answer.toString()
             lowerNumber.setText("")
-            upperNumber.setText(answer.toString())
+            if(firstOperand!!.length <= 10) {
+                upperNumber.setText(firstOperand)
+            } else {
+                //Only display upto 8 decimal places for decimal numbers
+                upperNumber.setText(firstOperand!!.substring(0, 11))
+            }
         } else {
             //If user didnt enter number and press enter
             lowerNumber.setText("")
