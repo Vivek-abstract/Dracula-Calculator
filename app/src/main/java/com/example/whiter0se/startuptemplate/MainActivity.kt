@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                     op = "*"
                 }
                 btnDiv.id -> {
-                    op = "/"
+                    op = "÷"
                 }
             }
             firstOperand = lowerNumber.text.toString()
@@ -94,9 +94,10 @@ class MainActivity : AppCompatActivity() {
                         op = "*"
                     }
                     btnDiv.id -> {
-                        op = "/"
+                        op = "÷"
                     }
                 }
+                isOperationUndergoing = true
                 firstOperand = upperNumber.text.toString()
                 lowerNumber.setText("$op ")
             } else {
@@ -112,7 +113,7 @@ class MainActivity : AppCompatActivity() {
                         op = "*"
                     }
                     btnDiv.id -> {
-                        op = "/"
+                        op = "÷"
                     }
                 }
                 lowerNumber.setText("$op ")
@@ -148,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                 "*" -> {
                     answer = firstOperand!!.toDouble() * secondOperand!!.toDouble()
                 }
-                "/" -> {
+                "÷" -> {
                     answer = firstOperand!!.toDouble() / secondOperand!!.toDouble()
                 }
             }
@@ -163,7 +164,14 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             //If user didnt enter number and press enter
-            lowerNumber.setText("")
+            var testUpper = upperNumber.text.toString()
+            if (testUpper.isNullOrBlank()) {
+                //User presses equal without any input
+                lowerNumber.setText("0")
+            } else {
+                //There is a number in upperNumber
+                lowerNumber.setText("")
+            }
         }
     }
 }

@@ -17,7 +17,7 @@
         android:paddingRight="4pt"
         android:paddingTop="5pt"
         android:textAlignment="textEnd"
-        android:textColor="@color/numberTop"
+        android:textColor="@color/whiteButton"
         android:textSize="45sp" />
 
     <TextView
