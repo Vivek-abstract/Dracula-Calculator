@@ -7,5 +7,5 @@ A dark themed Calculator for Android. Built in Kotlin using Android Studio 3
 3. Install the apk
 
 ## Screenshots:
-![Calculator Image 1](screenshots/cal1.png)
+<img src="screenshots/cal1.png" />
 ![Calculator Image 2](screenshots/cal2.png)
